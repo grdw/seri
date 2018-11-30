@@ -156,6 +156,18 @@ class BSerializer < Serializer
 end
 ```
 
+The result from `#to_json`:
+
+```json
+{
+  "lots_of_a": [
+    { "some_amazing_attribute": null },
+    { "some_amazing_attribute": null },
+    { "some_amazing_attribute": null }
+  ]
+}
+```
+
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/grdw/serializer. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
