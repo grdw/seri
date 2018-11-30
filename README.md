@@ -22,7 +22,7 @@ Or install it yourself as:
 
 A serializer can be used as such:
 
-```
+```ruby
 # example class:
 class Car
   attr_accessor :mileage
