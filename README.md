@@ -124,6 +124,38 @@ group_serializer.to_json
 ]
 ```
 
+## Q&A
+
+**Q: This looks cool and all but how do I do a `has_many`?**
+
+Answer:
+
+```
+class A
+  attr_accessor :some_amazing_attribute
+end
+
+class B
+  attr_accessor :some_attribute
+
+  def aaa
+    [A.new, A.new, A.new]
+  end
+end
+
+class ASerializer < Serializer
+  attribute :some_amazing_attribute
+end
+
+class BSerializer < Serializer
+  attribute :lots_of_a
+
+  def lots_of_a
+    object.aaa.map { |a| ASerializer.new(a).to_h }
+  end
+end
+```
+
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/grdw/serializer. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
