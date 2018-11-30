@@ -1,6 +1,6 @@
 # Serializer
 
-A basic replacement for gems like `active_model_serializer`
+A basic replacement for gems like `active_model_serializers`
 
 ## Installation
 
@@ -20,7 +20,26 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+A serializer can be used as such:
+
+```
+# example class:
+class Car
+  attr_accessor :mileage
+end
+
+# example serializer:
+class CarSerializer < Serializer
+  attribute :mileage
+  attribute :brand
+  attribute :mileage_alias, from: :mileage
+  attribute :honk, static_value: 'honk honk'
+
+  def brand
+    'mercedes'
+  end
+end
+```
 
 ## Contributing
 
