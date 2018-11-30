@@ -75,19 +75,53 @@ car = Car.new
 car.mileage = 25
 
 serializer = CarSerializer.new(car)
-serializer.to_h
 serializer.to_json
+```
 
-# #to_h returns:
-# {
-#   mileage: 25,
-#   brand: 'mercedes',
-#   mileage_alias: 25,
-#   honk: 'honk_honk',
-#   some_method: 625,
-#   some_conditional_method: 'visible_condition'
-# }
+```json
+# returns:
+{
+  "mileage": 25,
+  "brand": "mercedes",
+  "mileage_alias": 25,
+  "honk": "honk_honk",
+  "some_method": "625",
+  "some_conditional_method": 'visible_condition"
+}
+```
 
+In turn there's also a `GroupSerializer` available which can take a group of
+cars and turn them into a serialized Array. If we extend the example from
+earlier we can do:
+
+```
+# example:
+cars = [car, car]
+group_serializer = GroupSerializer.new(cars, serializer: CarSerializer)
+
+group_serializer.to_json
+```
+
+```json
+# returns:
+[
+  {
+    "mileage": 25,
+    "brand": "mercedes",
+    "mileage_alias": 25,
+    "honk": "honk_honk",
+    "some_method": "625",
+    "some_conditional_method": 'visible_condition"
+  },
+  {
+    "mileage": 25,
+    "brand": "mercedes",
+    "mileage_alias": 25,
+    "honk": "honk_honk",
+    "some_method": "625",
+    "some_conditional_method": 'visible_condition"
+  }
+]
 ```
 
 ## Contributing
