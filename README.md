@@ -159,7 +159,7 @@ class BSerializer < Serializer
 end
 ```
 
-The result from `#to_json`:
+The result from `BSerializer.new(b)#to_json`:
 
 ```json
 {
