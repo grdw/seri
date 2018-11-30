@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = %q{A basic serializer}
   spec.description   = %q{A basic serializer which can suite as a replacement to other gems}
-  spec.homepage      = "https://github.com/grdw/serializer"
+  spec.homepage      = "https://github.com/grdw/seri"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'

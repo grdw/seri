@@ -1,4 +1,4 @@
-# Serializer
+# Seri
 
 [![CircleCI](https://circleci.com/gh/grdw/serializer.svg?style=svg)](https://circleci.com/gh/grdw/serializer)
 
@@ -17,7 +17,7 @@ See [usage](#usage) for more details.
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'serializer'
+gem 'seri'
 ```
 
 And then execute:
@@ -26,7 +26,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install serializer
+    $ gem install seri
 
 ## Usage
 
@@ -179,4 +179,4 @@ The gem is available as open source under the terms of the [MIT License](https:/
 
 ## Code of Conduct
 
-Everyone interacting in the Serializer project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/grdw/serializer/blob/master/CODE_OF_CONDUCT.md).
+Everyone interacting in the Serializer project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/grdw/seri/blob/master/CODE_OF_CONDUCT.md).
