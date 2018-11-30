@@ -6,6 +6,7 @@ basic Ruby object into a Hash or JSON string with features like:
 - Aliasing attribute keys
 - Overriding attributes
 - Setting static values
+- Creating conditional attributes
 
 See [usage](#usage) for more details.
 
