@@ -42,6 +42,8 @@ class CarSerializer < Serializer
   attribute :mileage_alias, from: :mileage
   attribute :honk, static_value: 'honk honk'
   attribute :some_method
+  attribute :some_conditional_method, condition: :a_condition
+  attribute :some_other_conditional_method, condition: :b_condition
 
   def some_method
     object.mileage * 25
@@ -49,6 +51,22 @@ class CarSerializer < Serializer
 
   def brand
     'mercedes'
+  end
+
+  def some_conditional_method
+    'visible condition'
+  end
+
+  def a_condition
+    true
+  end
+
+  def some_other_conditional_method
+    'non visible condition'
+  end
+
+  def b_condition
+    !a_condition
   end
 end
 
@@ -59,6 +77,17 @@ car.mileage = 25
 serializer = CarSerializer.new(car)
 serializer.to_h
 serializer.to_json
+
+# #to_h returns:
+# {
+#   mileage: 25,
+#   brand: 'mercedes',
+#   mileage_alias: 25,
+#   honk: 'honk_honk',
+#   some_method: 625,
+#   some_conditional_method: 'visible_condition'
+# }
+
 ```
 
 ## Contributing
