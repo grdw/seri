@@ -8,7 +8,7 @@ class GroupSerializer
 
   def to_json(*)
     Appsignal.instrument(
-      'serializer.serialize',
+      'json.serialize',
       'Group serializer',
       @serializer.to_s
     ) do

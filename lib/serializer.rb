@@ -52,11 +52,7 @@ class Serializer
   end
 
   def to_json(*)
-    Appsignal.instrument(
-      'serializer.serialize',
-      'Serializer',
-      self.class.to_s
-    ) do
+    Appsignal.instrument('json.serialize', 'Serializer', self.class.to_s) do
       Oj.dump(to_h, mode: :json)
     end
   end
