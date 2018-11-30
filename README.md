@@ -1,6 +1,13 @@
 # Serializer
 
-A basic replacement for gems like `active_model_serializers`
+A basic replacement for gems like `active_model_serializers`. Can turn any
+basic Ruby object into a Hash or JSON string with features like:
+
+- Aliasing attribute keys
+- Overriding attributes
+- Setting static values
+
+See [usage](#usage) for more details.
 
 ## Installation
 
@@ -39,6 +46,14 @@ class CarSerializer < Serializer
     'mercedes'
   end
 end
+
+# example implementation:
+car = Car.new
+car.mileage = 25
+
+serializer = CarSerializer.new(car)
+serializer.to_h
+serializer.to_json
 ```
 
 ## Contributing
