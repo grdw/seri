@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    serializer (0.1.0)
+    seri (0.1.0)
       appsignal (~> 2.7)
       oj (~> 3.7)
 
@@ -35,7 +35,7 @@ DEPENDENCIES
   bundler (~> 1.16)
   rake (~> 10.0)
   rspec (~> 3.0)
-  serializer!
+  seri!
 
 BUNDLED WITH
    1.16.2
