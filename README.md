@@ -78,8 +78,9 @@ serializer = CarSerializer.new(car)
 serializer.to_json
 ```
 
+Result from `#to_json`:
+
 ```json
-# returns:
 {
   "mileage": 25,
   "brand": "mercedes",
@@ -94,7 +95,7 @@ In turn there's also a `GroupSerializer` available which can take a group of
 cars and turn them into a serialized Array. If we extend the example from
 earlier we can do:
 
-```
+```ruby
 # example:
 cars = [car, car]
 group_serializer = GroupSerializer.new(cars, serializer: CarSerializer)
@@ -102,8 +103,9 @@ group_serializer = GroupSerializer.new(cars, serializer: CarSerializer)
 group_serializer.to_json
 ```
 
+Result from `#to_json`:
+
 ```json
-# returns:
 [
   {
     "mileage": 25,
