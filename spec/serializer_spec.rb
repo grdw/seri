@@ -3,6 +3,23 @@ require 'spec_helper'
 RSpec.describe Serializer do
   class Car
     attr_accessor :mileage, :brand
+
+    def doors
+      [
+        Door.new(:front_left),
+        Door.new(:front_right),
+        Door.new(:back_left),
+        Door.new(:back_right)
+      ]
+    end
+  end
+
+  class Door
+    attr_accessor :position
+
+    def initialize(position)
+      @position = position
+    end
   end
 
   describe '#to_h' do
@@ -96,6 +113,28 @@ RSpec.describe Serializer do
 
         expect(serialized).to_not have_key(:green_car)
         expect(serialized).to have_key(:gas_slurper)
+      end
+    end
+
+    describe 'serialize-ception' do
+      class DoorSerializer < Serializer
+        attribute :pos, from: :position
+      end
+
+      class CarWithDoorsSerializer < Serializer
+        attribute :fancy_doors, from: :doors, serializer: DoorSerializer
+      end
+
+      it 'has the correct keys' do
+        car_serializer = CarWithDoorsSerializer.new(car)
+        serialized = car_serializer.to_h
+
+        expect(serialized.fetch(:fancy_doors)).to eq([
+          { pos: :front_left },
+          { pos: :front_right },
+          { pos: :back_left },
+          { pos: :back_right }
+        ])
       end
     end
 

@@ -4,14 +4,14 @@ require 'serializer/group_serializer'
 class Serializer
   class SerializerError < StandardError; end
 
-  Attribute = Struct.new(:key, :condition, :from, :options)
+  Attribute = Struct.new(:key, :condition, :from, :serializer, :options)
 
   def self.attributes
     @attributes ||= []
   end
 
-  def self.attribute(key, condition: nil, from: nil, **options)
-    attributes.push(Attribute.new(key, condition, from, options))
+  def self.attribute(key, condition: nil, from: nil, serializer: nil, **options)
+    attributes.push(Attribute.new(key, condition, from, serializer, options))
   end
 
   attr_accessor :object, :scope
@@ -37,6 +37,10 @@ class Serializer
                 attribute.options.fetch(:static_value)
               elsif respond_to?(extraction_key)
                 public_send(extraction_key)
+              elsif object.respond_to?(extraction_key) && attribute.serializer
+                value = object.public_send(extraction_key)
+
+                serialize_value(value, attribute.serializer)
               elsif object.respond_to?(extraction_key)
                 object.public_send(extraction_key)
               else
@@ -54,6 +58,16 @@ class Serializer
       self.class.to_s
     ) do
       Oj.dump(to_h, mode: :json)
+    end
+  end
+
+  private
+
+  def serialize_value(value, serializer)
+    if value.is_a?(Array)
+      value.map { |v| serializer.new(v).to_h }
+    else
+      serializer.new(value).to_h
     end
   end
 end

@@ -151,11 +151,7 @@ class ASerializer < Serializer
 end
 
 class BSerializer < Serializer
-  attribute :lots_of_a
-
-  def lots_of_a
-    object.aaa.map { |a| ASerializer.new(a).to_h }
-  end
+  attribute :lots_of_a, from: :aaa, serializer: ASerializer
 end
 ```
 
