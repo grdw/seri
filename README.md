@@ -29,7 +29,7 @@ Or install it yourself as:
 
 A serializer can be used as such:
 
-```ruby
+```
 # example class:
 class Car
   attr_accessor :mileage
@@ -41,6 +41,11 @@ class CarSerializer < Serializer
   attribute :brand
   attribute :mileage_alias, from: :mileage
   attribute :honk, static_value: 'honk honk'
+  attribute :some_method
+
+  def some_method
+    object.mileage * 25
+  end
 
   def brand
     'mercedes'
