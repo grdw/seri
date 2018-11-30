@@ -86,7 +86,7 @@ serializer.to_json
   "mileage_alias": 25,
   "honk": "honk_honk",
   "some_method": "625",
-  "some_conditional_method": 'visible_condition"
+  "some_conditional_method": "visible_condition"
 }
 ```
 
@@ -111,7 +111,7 @@ group_serializer.to_json
     "mileage_alias": 25,
     "honk": "honk_honk",
     "some_method": "625",
-    "some_conditional_method": 'visible_condition"
+    "some_conditional_method": "visible_condition"
   },
   {
     "mileage": 25,
@@ -119,7 +119,7 @@ group_serializer.to_json
     "mileage_alias": 25,
     "honk": "honk_honk",
     "some_method": "625",
-    "some_conditional_method": 'visible_condition"
+    "some_conditional_method": "visible_condition"
   }
 ]
 ```
