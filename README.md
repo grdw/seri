@@ -1,5 +1,7 @@
 # Serializer
 
+[![CircleCI](https://circleci.com/gh/grdw/serializer.svg?style=svg)](https://circleci.com/gh/grdw/serializer)
+
 A basic replacement for gems like `active_model_serializers`. Can turn any
 basic Ruby object into a Hash or JSON string with features like:
 
