@@ -130,7 +130,7 @@ group_serializer.to_json
 
 Answer:
 
-```
+```ruby
 class A
   attr_accessor :some_amazing_attribute
 end
