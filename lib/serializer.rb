@@ -42,18 +42,14 @@ class Serializer
       value = if attribute.options.has_key?(:static_value)
                 attribute.options.fetch(:static_value)
               elsif respond_to?(extraction_key)
-                value = public_send(extraction_key)
-
-                serialize_value(value, attribute.serializer)
+                public_send(extraction_key)
               elsif object.respond_to?(extraction_key)
-                value = object.public_send(extraction_key)
-
-                serialize_value(value, attribute.serializer)
+                object.public_send(extraction_key)
               else
                 raise SerializerError, "unknown attribute '#{extraction_key}'"
               end
 
-      obj[attribute.key] = value
+      obj[attribute.key] = serialize_value(value, attribute.serializer)
     end
   end
 
