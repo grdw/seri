@@ -4,6 +4,8 @@ require 'serializer/group_serializer'
 class Serializer
   class SerializerError < StandardError; end
 
+  ARRAYS = %w(Array ActiveRecord::AssociationRelation)
+
   Attribute = Struct.new(:key, :condition, :from, :serializer, :options)
 
   def self.attributes
@@ -62,7 +64,7 @@ class Serializer
   def serialize_value(value, serializer)
     return value unless serializer
 
-    if value.is_a?(Array)
+    if ARRAYS.include?(value.class.to_s)
       value.map { |v| serializer.new(v).to_h }
     else
       serializer.new(value).to_h
