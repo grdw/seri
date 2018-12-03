@@ -36,13 +36,13 @@ class Serializer
       value = if attribute.options.has_key?(:static_value)
                 attribute.options.fetch(:static_value)
               elsif respond_to?(extraction_key)
-                public_send(extraction_key)
-              elsif object.respond_to?(extraction_key) && attribute.serializer
-                value = object.public_send(extraction_key)
+                value = public_send(extraction_key)
 
                 serialize_value(value, attribute.serializer)
               elsif object.respond_to?(extraction_key)
-                object.public_send(extraction_key)
+                value = object.public_send(extraction_key)
+
+                serialize_value(value, attribute.serializer)
               else
                 raise SerializerError, "unknown attribute '#{extraction_key}'"
               end
@@ -60,6 +60,8 @@ class Serializer
   private
 
   def serialize_value(value, serializer)
+    return value unless serializer
+
     if value.is_a?(Array)
       value.map { |v| serializer.new(v).to_h }
     else
