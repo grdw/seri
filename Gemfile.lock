@@ -1,18 +1,18 @@
 PATH
   remote: .
   specs:
-    seri (0.1.2)
+    seri (0.1.5)
       appsignal (~> 2.7)
       oj (~> 3.7)
 
 GEM
   remote: https://rubygems.org/
   specs:
-    appsignal (2.7.2)
+    appsignal (2.9.5)
       rack
     diff-lcs (1.3)
-    oj (3.7.4)
-    rack (2.0.6)
+    oj (3.7.11)
+    rack (2.0.7)
     rake (10.5.0)
     rspec (3.8.0)
       rspec-core (~> 3.8.0)
