@@ -22,12 +22,70 @@ RSpec.describe Serializer do
     end
   end
 
+  describe 'group serialization' do
+    let(:cars) do
+      car_one = Car.new
+      car_one.mileage = 20
+
+      car_two = Car.new
+      car_two.mileage = 30
+
+      [car_one, car_two]
+    end
+
+    context 'easy case' do
+      class OneToOneCarSerializer < Serializer
+        attribute :mileage
+      end
+
+      it 'can dump multiple cars' do
+        result = GroupSerializer.new(
+          cars,
+          serializer: OneToOneCarSerializer
+        ).to_h
+
+        expect(result).to eq(
+          [
+            { mileage: 20 },
+            { mileage: 30 }
+          ]
+        )
+      end
+    end
+
+    context 'easy case with scope' do
+      class CarScopedSerializer < Serializer
+        attribute :mileage
+        attribute :scoped_value
+
+        def scoped_value
+          scope[:scope_value] * 5
+        end
+      end
+
+      it 'can dump multiple cars' do
+        result = GroupSerializer.new(
+          cars,
+          serializer: CarScopedSerializer,
+          scope: { scope_value: 2 }
+        ).to_h
+
+        expect(result).to eq(
+          [
+            { mileage: 20, scoped_value: 10 },
+            { mileage: 30, scoped_value: 10 }
+          ]
+        )
+      end
+    end
+  end
+
   describe '#to_h' do
-    let(:car) {
+    let(:car) do
       car = Car.new
       car.mileage = 25
       car
-    }
+    end
 
     describe 'one-to-one attribute' do
       class OneToOneCarSerializer < Serializer
@@ -129,12 +187,14 @@ RSpec.describe Serializer do
         car_serializer = CarWithDoorsSerializer.new(car)
         serialized = car_serializer.to_h
 
-        expect(serialized.fetch(:fancy_doors)).to eq([
-          { pos: :front_left },
-          { pos: :front_right },
-          { pos: :back_left },
-          { pos: :back_right }
-        ])
+        expect(serialized.fetch(:fancy_doors)).to eq(
+          [
+            { pos: :front_left },
+            { pos: :front_right },
+            { pos: :back_left },
+            { pos: :back_right }
+          ]
+        )
       end
     end
 
