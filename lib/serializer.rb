@@ -63,7 +63,7 @@ class Serializer
   # .. method/attribute defined in the object or ..
   # .. it raises an error
   def extract_value(attribute)
-      extraction_key = attribute.from || attribute.key
+    extraction_key = attribute.from || attribute.key
 
     if attribute.options.key?(:static_value)
       attribute.options.fetch(:static_value)
