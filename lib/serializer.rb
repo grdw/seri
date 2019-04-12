@@ -48,14 +48,12 @@ class Serializer
     value = extract_value(attribute)
     serializer = attribute.serializer
 
-    if serializer
-      if ARRAYS.any? { |match| value.class.to_s.end_with?(match) }
-        value.map { |v| serializer.new(v).to_h }
-      else
-        serializer.new(value).to_h
-      end
+    return value unless serializer
+
+    if ARRAYS.any? { |match| value.class.to_s.end_with?(match) }
+      value.map { |v| serializer.new(v).to_h }
     else
-      value
+      serializer.new(value).to_h
     end
   end
 

@@ -93,7 +93,7 @@ RSpec.describe Serializer do
         attribute :items
 
         def items
-          %w(1 2 3)
+          %w[1 2 3]
         end
       end
 
@@ -102,7 +102,7 @@ RSpec.describe Serializer do
         serialized = car_serializer.to_h
 
         expect(serialized.fetch(:mileage)).to eq(25)
-        expect(serialized.fetch(:items)).to eq(%w(1 2 3))
+        expect(serialized.fetch(:items)).to eq(%w[1 2 3])
       end
     end
 
