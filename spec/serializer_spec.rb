@@ -88,15 +88,21 @@ RSpec.describe Serializer do
     end
 
     describe 'one-to-one attribute' do
-      class OneToOneCarSerializer < Serializer
+      class OneToOneCarSerializerWithItems < Serializer
         attribute :mileage
+        attribute :items
+
+        def items
+          %w(1 2 3)
+        end
       end
 
       it 'dumps the mileage' do
-        car_serializer = OneToOneCarSerializer.new(car)
+        car_serializer = OneToOneCarSerializerWithItems.new(car)
         serialized = car_serializer.to_h
 
         expect(serialized.fetch(:mileage)).to eq(25)
+        expect(serialized.fetch(:items)).to eq(%w(1 2 3))
       end
     end
 
