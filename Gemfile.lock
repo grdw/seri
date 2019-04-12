@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    seri (1.0.1)
+    seri (1.0.2)
       appsignal (~> 2.7)
       oj (~> 3.7)
 
