@@ -28,8 +28,8 @@ class ValueFetcher
 
     return value unless serializer
 
-    if ARRAYS.any? { |match| value.class.to_s.end_with?(match) }
-      value.map { |v| serializer.new(v).to_h }
+    if is_array?
+      value.map { |item| serializer.new(item).to_h }
     else
       serializer.new(value).to_h
     end
@@ -46,10 +46,14 @@ class ValueFetcher
 
       if extracted_value.nil?
         raise SerializerError,
-              "unknown attribute '#{@attribute.from || @attribute.key}'"
+              "unknown attribute '#{@values[0].extraction_key}'"
       end
 
       extracted_value.value
     end
+  end
+
+  def is_array?
+    ARRAYS.any? { |match| value.class.to_s.end_with?(match) }
   end
 end
