@@ -28,7 +28,7 @@ class ValueFetcher
 
     return value unless serializer
 
-    if is_array?
+    if array?
       value.map { |item| serializer.new(item).to_h }
     else
       serializer.new(value).to_h
@@ -53,7 +53,7 @@ class ValueFetcher
     end
   end
 
-  def is_array?
+  def array?
     ARRAYS.any? { |match| value.class.to_s.end_with?(match) }
   end
 end
