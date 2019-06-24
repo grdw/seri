@@ -69,6 +69,8 @@ class Serializer
       attribute.options.fetch(:static_value)
     elsif respond_to?(extraction_key)
       public_send(extraction_key)
+    elsif object.is_a?(Hash) && object.key?(extraction_key)
+      object.fetch(extraction_key)
     elsif object.respond_to?(extraction_key)
       object.public_send(extraction_key)
     else

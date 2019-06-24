@@ -87,6 +87,19 @@ RSpec.describe Serializer do
       car
     end
 
+    describe 'hash aliasing' do
+      class HashSerializer < Serializer
+        attribute :a, from: :b
+        attribute :b, from: :c
+      end
+
+      it 'a standard hash' do
+        serializer = HashSerializer.new(b: 25, c: 35)
+
+        expect(serializer.to_h).to eq(a: 25, b: 35)
+      end
+    end
+
     describe 'one-to-one attribute' do
       class OneToOneCarSerializerWithItems < Serializer
         attribute :mileage
