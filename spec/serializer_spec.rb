@@ -225,7 +225,7 @@ RSpec.describe Serializer do
       it 'raises an error' do
         car_serializer = UnknownKeyCarSerializer.new(car)
         expect { car_serializer.to_h }.to raise_error(
-          Serializer::SerializerError,
+          ValueFetcher::SerializerError,
           /unknown attribute 'altitude'/
         )
       end
