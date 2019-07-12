@@ -8,13 +8,7 @@ class GroupSerializer
   end
 
   def to_json(*)
-    Appsignal.instrument(
-      'json.serialize',
-      'Group serializer',
-      @serializer.to_s
-    ) do
-      Oj.dump(to_h, mode: :json)
-    end
+    Oj.dump(to_h, mode: :json)
   end
 
   def to_h
