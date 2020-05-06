@@ -3,6 +3,8 @@ Metrics/BlockLength:
     - 'spec/**/*.rb'
 Style/Documentation:
   Enabled: false
+Style/FrozenStringLiteralComment:
+  Enabled: false
 # This is causing breaking changes:
 Style/ExpandPathArguments:
   Enabled: false

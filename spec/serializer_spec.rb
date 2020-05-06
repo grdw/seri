@@ -98,6 +98,12 @@ RSpec.describe Serializer do
 
         expect(serializer.to_h).to eq(a: 25, b: 35)
       end
+
+      it 'no b' do
+        serializer = HashSerializer.new(c: 35)
+
+        expect(serializer.to_h).to eq(a: nil, b: 35)
+      end
     end
 
     describe 'one-to-one attribute' do
@@ -225,7 +231,7 @@ RSpec.describe Serializer do
       it 'raises an error' do
         car_serializer = UnknownKeyCarSerializer.new(car)
         expect { car_serializer.to_h }.to raise_error(
-          ValueFetcher::SerializerError,
+          Serializer::ValueFetcher::SerializerError,
           /unknown attribute 'altitude'/
         )
       end
