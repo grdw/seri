@@ -4,7 +4,7 @@ require 'serializer/version'
 
 Gem::Specification.new do |spec|
   spec.name          = 'seri'
-  spec.version       = Serializer::VERSION
+  spec.version       = Seri::Serializer::VERSION
   spec.authors       = ['grdw']
   spec.email         = ['gerard@wetransfer.com']
 

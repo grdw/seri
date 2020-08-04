@@ -1,3 +1,5 @@
-class Serializer
-  VERSION = '1.1.11'.freeze
+module Seri
+  class Serializer
+    VERSION = '2.0.0'.freeze
+  end
 end
