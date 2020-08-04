@@ -33,13 +33,15 @@ Or install it yourself as:
 A serializer can be used as such:
 
 ```ruby
+require 'seri'
+
 # example class:
 class Car
   attr_accessor :mileage
 end
 
 # example serializer:
-class CarSerializer < Serializer
+class CarSerializer < Seri::Serializer
   attribute :mileage
   attribute :brand
   attribute :mileage_alias, from: :mileage
@@ -94,14 +96,14 @@ Result from `#to_json`:
 }
 ```
 
-In turn there's also a `GroupSerializer` available which can take a group of
+In turn there's also a `Seri::GroupSerializer` available which can take a group of
 cars and turn them into a serialized Array. If we extend the example from
 earlier we can do:
 
 ```ruby
 # example:
 cars = [car, car]
-group_serializer = GroupSerializer.new(cars, serializer: CarSerializer)
+group_serializer = Seri::GroupSerializer.new(cars, serializer: CarSerializer)
 
 group_serializer.to_json
 ```
@@ -148,11 +150,11 @@ class B
   end
 end
 
-class ASerializer < Serializer
+class ASerializer < Seri::Serializer
   attribute :some_amazing_attribute
 end
 
-class BSerializer < Serializer
+class BSerializer < Seri::Serializer
   attribute :lots_of_a, from: :aaa, serializer: ASerializer
 end
 ```
