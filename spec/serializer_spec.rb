@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-module Seri
+module Seri # rubocop:disable Metrics/ModuleLength
   RSpec.describe Serializer do
     class Car
       attr_accessor :mileage, :brand
