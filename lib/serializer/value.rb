@@ -1,60 +1,62 @@
-class Serializer
-  class Value
-    def initialize(attribute, scope = nil)
-      @attribute = attribute
-      @scope = scope
+module Seri
+  class Serializer
+    class Value
+      def initialize(attribute, scope = nil)
+        @attribute = attribute
+        @scope = scope
+      end
+
+      def extraction_key
+        @attribute.from || @attribute.key
+      end
+
+      def precondition?
+        raise NotImplementedError, 'needs a method called precondition?'
+      end
+
+      def value
+        raise NotImplementedError, 'needs a method called value'
+      end
     end
 
-    def extraction_key
-      @attribute.from || @attribute.key
+    class StaticValue < Value
+      def precondition?
+        @attribute.options.key?(:static_value)
+      end
+
+      def value
+        @attribute.options.fetch(:static_value)
+      end
     end
 
-    def precondition?
-      raise NotImplementedError, 'needs a method called precondition?'
+    class SerializedValue < Value
+      def precondition?
+        @scope.respond_to?(extraction_key)
+      end
+
+      def value
+        @scope.public_send(extraction_key)
+      end
     end
 
-    def value
-      raise NotImplementedError, 'needs a method called value'
-    end
-  end
+    class HashValue < Value
+      def precondition?
+        @scope.is_a?(Hash)
+      end
 
-  class StaticValue < Value
-    def precondition?
-      @attribute.options.key?(:static_value)
-    end
-
-    def value
-      @attribute.options.fetch(:static_value)
-    end
-  end
-
-  class SerializedValue < Value
-    def precondition?
-      @scope.respond_to?(extraction_key)
+      def value
+        @scope[extraction_key]
+      end
     end
 
-    def value
-      @scope.public_send(extraction_key)
-    end
-  end
+    class ObjectValue < Value
+      def precondition?
+        @scope.respond_to?(extraction_key)
+      end
 
-  class HashValue < Value
-    def precondition?
-      @scope.is_a?(Hash)
-    end
-
-    def value
-      @scope[extraction_key]
-    end
-  end
-
-  class ObjectValue < Value
-    def precondition?
-      @scope.respond_to?(extraction_key)
-    end
-
-    def value
-      @scope.public_send(extraction_key)
+      def value
+        @scope.public_send(extraction_key)
+      end
     end
   end
 end
