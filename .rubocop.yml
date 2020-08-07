@@ -36,3 +36,49 @@ Style/RedundantRegexpEscape:
   Enabled: false
 Style/SlicingWithRange:
   Enabled: false
+Lint/BinaryOperatorWithIdenticalOperands:
+  Enabled: false
+Lint/DuplicateElsifCondition:
+  Enabled: false
+Lint/DuplicateRescueException:
+  Enabled: false
+Lint/EmptyConditionalBody:
+  Enabled: false
+Lint/FloatComparison:
+  Enabled: false
+Lint/MissingSuper:
+  Enabled: false
+Lint/OutOfRangeRegexpRef:
+  Enabled: false
+Lint/SelfAssignment:
+  Enabled: false
+Lint/TopLevelReturnWithArgument:
+  Enabled: false
+Lint/UnreachableLoop:
+  Enabled: false
+Style/AccessorGrouping:
+  Enabled: false
+Style/ArrayCoercion:
+  Enabled: false
+Style/BisectedAttrAccessor:
+  Enabled: false
+Style/CaseLikeIf:
+  Enabled: false
+Style/ExplicitBlockArgument:
+  Enabled: false
+Style/GlobalStdStream:
+  Enabled: false
+Style/HashAsLastArrayItem:
+  Enabled: false
+Style/HashLikeCase:
+  Enabled: false
+Style/OptionalBooleanParameter:
+  Enabled: false
+Style/RedundantAssignment:
+  Enabled: false
+Style/RedundantFileExtensionInRequire:
+  Enabled: false
+Style/SingleArgumentDig:
+  Enabled: false
+Style/StringConcatenation:
+  Enabled: false
