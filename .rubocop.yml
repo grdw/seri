@@ -82,3 +82,5 @@ Style/SingleArgumentDig:
   Enabled: false
 Style/StringConcatenation:
   Enabled: false
+Gemspec/RequiredRubyVersion:
+  Enabled: false
