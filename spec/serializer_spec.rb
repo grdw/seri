@@ -2,28 +2,28 @@ require 'spec_helper'
 
 module Seri # rubocop:disable Metrics/ModuleLength
   RSpec.describe Serializer do
-    class Car
-      attr_accessor :mileage, :brand
-
-      def doors
-        [
-          Door.new(:front_left),
-          Door.new(:front_right),
-          Door.new(:back_left),
-          Door.new(:back_right)
-        ]
-      end
-    end
-
-    class Door
-      attr_accessor :position
-
-      def initialize(position)
-        @position = position
-      end
-    end
-
     describe 'group serialization' do
+      class Car
+        attr_accessor :mileage, :brand
+
+        def doors
+          [
+            Door.new(:front_left),
+            Door.new(:front_right),
+            Door.new(:back_left),
+            Door.new(:back_right)
+          ]
+        end
+      end
+
+      class Door
+        attr_accessor :position
+
+        def initialize(position)
+          @position = position
+        end
+      end
+
       let(:cars) do
         car_one = Car.new
         car_one.mileage = 20

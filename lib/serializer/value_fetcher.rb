@@ -3,12 +3,6 @@ module Seri
     class ValueFetcher
       class SerializerError < StandardError; end
 
-      ARRAYS = %w[
-        Array
-        ActiveRecord_AssociationRelation
-        ActiveRecord_Associations_CollectionProxy
-      ].freeze
-
       def self.fetch(attribute, object, serializer)
         new(attribute, object, serializer).fetch
       end
@@ -30,7 +24,7 @@ module Seri
 
         return value unless serializer
 
-        if array?
+        if value.is_a?(Enumerable) && !value.is_a?(Hash)
           value.map { |item| serializer.new(item).to_h }
         else
           serializer.new(value).to_h
@@ -53,10 +47,6 @@ module Seri
 
           extracted_value.value
         end
-      end
-
-      def array?
-        ARRAYS.any? { |match| value.class.to_s.end_with?(match) }
       end
     end
   end
