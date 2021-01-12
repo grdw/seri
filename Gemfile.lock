@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    seri (2.0.2)
+    seri (2.0.3)
       oj (~> 3.7)
 
 GEM
@@ -61,4 +61,4 @@ DEPENDENCIES
   seri!
 
 BUNDLED WITH
-   1.17.3
+   2.2.5
