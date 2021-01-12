@@ -95,13 +95,13 @@ module Seri # rubocop:disable Metrics/ModuleLength
         end
 
         it 'a standard hash' do
-          serializer = HashSerializer.new(b: 25, c: 35)
+          serializer = HashSerializer.new({b: 25, c: 35})
 
           expect(serializer.to_h).to eq(a: 25, b: 35)
         end
 
         it 'no b' do
-          serializer = HashSerializer.new(c: 35)
+          serializer = HashSerializer.new({c: 35})
 
           expect(serializer.to_h).to eq(a: nil, b: 35)
         end
