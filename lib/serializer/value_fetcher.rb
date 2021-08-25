@@ -15,7 +15,7 @@ module Seri
           StaticValue.new(attribute),
           SerializedValue.new(attribute, serializer),
           HashValue.new(attribute, object),
-          ObjectValue.new(attribute, object)
+          SerializedValue.new(attribute, object)
         ]
       end
 

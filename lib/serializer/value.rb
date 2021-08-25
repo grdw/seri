@@ -48,15 +48,5 @@ module Seri
         @scope[extraction_key]
       end
     end
-
-    class ObjectValue < Value
-      def precondition?
-        @scope.respond_to?(extraction_key)
-      end
-
-      def value
-        @scope.public_send(extraction_key)
-      end
-    end
   end
 end
