@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+if ! [ -x "$(command -v gh)" ]; then
+  echo "Requires gh, please install."
+  exit 1
+fi
+
+echo "> Updating local repository..."
+git fetch
+
+prev_release="$(git tag --sort=-creatordate | head -n 1)"
+notes=$(git log --pretty="- %s" $prev_release...origin/master)
+
+if [ -z "$notes" ]; then
+  echo "> There is nothing to release"
+  exit 1
+fi
+
+echo "> Changes since $prev_release:"
+echo "$notes"
+echo ""
+echo "The previous version is $prev_release. Supply a new release version:"
+read version
+
+gh release create $version --title $version --notes "$notes"
