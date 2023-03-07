@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    seri (2.0.9)
+    seri (2.0.10)
       oj (~> 3.7)
 
 GEM
