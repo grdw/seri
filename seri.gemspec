@@ -6,7 +6,7 @@ Gem::Specification.new do |spec|
   spec.name          = 'seri'
   spec.version       = Seri::Serializer::VERSION
   spec.authors       = ['grdw']
-  spec.email         = ['gerard@wetransfer.com']
+  spec.email         = ['grdw@grdw.nl']
 
   spec.summary       = 'A basic serializer'
   spec.description   = 'A basic serializer'
