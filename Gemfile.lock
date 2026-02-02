@@ -13,7 +13,7 @@ GEM
     diff-lcs (1.6.2)
     io-console (0.8.2)
     method_source (1.1.0)
-    oj (3.16.12)
+    oj (3.16.13)
       bigdecimal (>= 3.0)
       ostruct (>= 0.2)
     ostruct (0.6.3)
